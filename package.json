@@ -1,0 +1,21 @@
+{
+  "name": "htmltopdf",
+  "version": "1.0.0",
+  "description": "Convert HTML to a PDF file",
+  "main": "index.js",
+  "private": true,
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "bin": {
+    "htmltopdf": "./index.js"
+  },
+  "author": "Spark RE",
+  "license": "UNLICENSED",
+  "dependencies": {
+    "get-stdin": "^8.0.0",
+    "puppeteer": "^5.2.1",
+    "tmp-promise": "^3.0.2",
+    "yargs": "^15.4.1"
+  }
+}
