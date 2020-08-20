@@ -17,7 +17,7 @@ This executable is meant for streaming, so it reads the raw HTML from STDIN and
 writes the PDF file to STDOUT:
 
 ```sh
-htmltopdf < /path/to/input.html > /path/to/output.pdf
+htmltopdf -i /path/to/input.html -o /path/to/output.pdf
 ```
 
 ### Commandline Flags
@@ -30,6 +30,9 @@ Options:
   --pagesize, -s
        [choices: "Letter", "Legal", "Tabloid", "Ledger", "A0", "A1", "A2", "A3",
                                            "A4", "A5", "A6"] [default: "Letter"]
+  --footer, -f     File with HTML snippet to use as the footer.         [string]
+  --input, -i      File to use as HTML input (instead of STDIN).        [string]
+  --output, -o     File to write PDF to (instead of STDOUT).            [string]
 ```
 
 
