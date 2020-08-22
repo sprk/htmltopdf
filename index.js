@@ -14,13 +14,13 @@ const pageSizes = ["Letter", "Legal", "Tabloid", "Ledger",
 const argv = yargs
       .usage("Usage: $0 -s Letter -i input.html -o output.pdf")
       .options({
-        "landscape": { type: "boolean", default: false, alias: "l" },
-        "pagesize": { choices: pageSizes, default: pageSizes[0], alias: "s" },
-        "footer": { type: "string", alias: "f",
+        landscape: { type: "boolean", default: false, alias: "l" },
+        pagesize: { choices: pageSizes, default: pageSizes[0], alias: "s" },
+        footer: { type: "string", alias: "f",
                     desc: "File with HTML snippet to use as the footer." },
-        "input": { type: "string", alias: "i",
+        input: { type: "string", alias: "i",
                    desc: "File to use as HTML input (instead of STDIN)." },
-        "output": { type: "string", alias: "o",
+        output: { type: "string", alias: "o",
                     desc: "File to write PDF to (instead of STDOUT)."}
       })
       .argv;
@@ -31,7 +31,10 @@ const tmpOptions = { prefix: "htmltopdf", postfix: ".html" };
 
 async function main() {
   await withInputFile(async inPath => {
-    const htmlToPdf = new HtmlToPdf(inPath);
+    const htmlToPdf = new HtmlToPdf(inPath, {
+      format: argv.pagesize,
+      landscape: argv.landscape
+    });
 
     if (argv.footer) {
       htmlToPdf.footer = fs.readFileSync(argv.footer, {encoding: "utf8"});
