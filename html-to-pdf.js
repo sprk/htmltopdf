@@ -63,6 +63,8 @@ class HtmlToPdf {
     const page = await browser.newPage();
 
     try {
+      // networkidle0: will block until 500 ms after network activity finishes.
+      // See https://github.com/puppeteer/puppeteer/blob/v5.2.1/docs/api.md#pagegotourl-options
       await page.goto(`file://${this.inputPath}`, { waitUntil: "networkidle0" });
       return await callback(page);
     } finally {
