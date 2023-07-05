@@ -6,6 +6,7 @@ const defaultOptions = {
   printBackground: true,
   headerTemplate: "\n", // Unset default header.
   scale: 0.8, // Scale down to match current wkhtmltopdf output.
+  timeout: 60000, // timeout in ms. Default 30000
 };
 
 
