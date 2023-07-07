@@ -6,7 +6,6 @@ const defaultOptions = {
   printBackground: true,
   headerTemplate: "\n", // Unset default header.
   scale: 0.8, // Scale down to match current wkhtmltopdf output.
-  timeout: 60000, // timeout in ms. Default 30000
 };
 
 
@@ -62,6 +61,8 @@ class HtmlToPdf {
   async withPuppeteerPage(callback) {
     const browser = await puppeteer.launch({ headless: "new" });
     const page = await browser.newPage();
+    page.setDefaultNavigationTimeout(60_000);
+    page.setDefaultTimeout(60_000);
 
     try {
       // networkidle0: will block until 500 ms after network activity finishes.
