@@ -60,7 +60,7 @@ class HtmlToPdf {
    * @return {Promise}
    */
   async withPuppeteerPage(callback) {
-    const browser = await puppeteer.launch();
+    const browser = await puppeteer.launch({ headless: "new" });
     const page = await browser.newPage();
     page.setDefaultNavigationTimeout(60_000);
     page.setDefaultTimeout(60_000);
