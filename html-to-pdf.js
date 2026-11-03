@@ -61,20 +61,20 @@ class HtmlToPdf {
    */
   async withPuppeteerPage(callback) {
     const browser = await puppeteer.launch({
-      headless: "new",
       args: process.env.CHROME_ARGS ? process.env.CHROME_ARGS.split(" ") : [] // Ex. --no-sandbox --disable-setuid-sandbox --disable-dev-shm-usage
     });
-    const page = await browser.newPage();
-    page.setDefaultNavigationTimeout(60_000);
-    page.setDefaultTimeout(60_000);
 
     try {
+      const page = await browser.newPage();
+      page.setDefaultNavigationTimeout(60_000);
+      page.setDefaultTimeout(60_000);
+
       // networkidle0: will block until 500 ms after network activity finishes.
       // See https://github.com/puppeteer/puppeteer/blob/v5.2.1/docs/api.md#pagegotourl-options
       await page.goto(`file://${this.inputPath}`, { waitUntil: "networkidle0" });
       return await callback(page);
     } finally {
-      browser.close();
+      await browser.close();
     }
   }
 
